@@ -25,7 +25,7 @@ Read strategy:
 
 The keyring service name is configurable via ``configure_service_name`` so
 each distribution can namespace its secrets and never read, copy, or alias
-secrets across builds.  The default is ``"code-puppy"``; downstream
+secrets across builds.  The default is ``"biggato"``; downstream
 distributions override it at startup.
 
 Public API
@@ -55,11 +55,11 @@ from code_puppy.config import CONFIG_DIR
 
 # Keyring namespace for every secret. Downstream distributions override via
 # ``configure_service_name`` so secrets never bleed across builds.
-_service_name = "code-puppy"
+_service_name = "biggato"
 
 # Default service namespace; legacy flat fallback migrates under it so the
 # default build stays readable without leaking across distributions.
-_DEFAULT_SERVICE = "code-puppy"
+_DEFAULT_SERVICE = "biggato"
 
 # Permission-hardened JSON fallback used only when the keyring backend is
 # unavailable (headless boxes, minimal CI containers, etc.).
@@ -108,7 +108,7 @@ def configure_service_name(name: str) -> None:
     Call this early at startup -- before any get/set/delete calls -- so
     secrets are namespaced per distribution.  Downstream distributions
     call this from their ``startup`` callback.  The default is
-    ``"code-puppy"``.
+    ``"biggato"``.
     """
     global _service_name
     name = str(name).strip()

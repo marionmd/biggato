@@ -76,7 +76,7 @@ def test_speculation_plural_forms_render_through_runtime(locale, key, count):
         ("help.keybinding.ctrl_enter.label", ("Ctrl+Enter",)),
         ("help.keybinding.newline.label", ("Ctrl+J", "Shift+Enter")),
         ("help.keybinding.newline.description", ("Ctrl+J",)),
-        ("browser.chromium.installing", ("Chromium", "Playwright", "Code Puppy")),
+        ("browser.chromium.installing", ("Chromium", "Playwright", "Biggato")),
     ],
 )
 def test_main_sync_preserves_technical_identifiers(locale, key, tokens):

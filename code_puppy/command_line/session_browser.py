@@ -165,7 +165,7 @@ class SessionBrowser:
     def _header_line(self, width: int) -> str:
         s = self._style
         left = (
-            self._c(s.bright, "CODE PUPPY", bold=True)
+            self._c(s.bright, "BIGGATO", bold=True)
             + self._c(s.symbol, " > ")
             + f"{BOLD_ON}Resume Auto-Saved Session{RESET}"
         )

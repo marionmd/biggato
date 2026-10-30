@@ -70,7 +70,7 @@ def test_render_sheet_text_omits_trailing_column_for_entries_without_right():
 def test_pager_paints_sheet_and_all_close_keys_work():
     for close_key in ("tab", "q", "escape", "enter", "ctrl-c"):
         result, out = _drive(_sections(), [close_key])
-        assert "CODE PUPPY -- HELP" in out
+        assert "BIGGATO -- HELP" in out
         assert "KEYBINDINGS" in out
 
 

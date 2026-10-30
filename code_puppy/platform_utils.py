@@ -6,12 +6,12 @@ import os
 import shutil
 import sys
 
-# ``CODE PUPPY`` rendered in pyfiglet's ansi_shadow spans 79 columns
+# ``BIGGATO`` rendered in pyfiglet's ansi_shadow spans 55 columns
 # (pinned by tests/test_platform_utils.py). Baked so banner selection
 # stays import-light -- no pyfiglet needed just to pick a label.
-_FULL_BANNER = "CODE PUPPY"
-_FULL_BANNER_WIDTH = 79
-_COMPACT_BANNER = "PUP"
+_FULL_BANNER = "BIGGATO"
+_FULL_BANNER_WIDTH = 55
+_COMPACT_BANNER = "GATO"
 
 
 def is_windows() -> bool:

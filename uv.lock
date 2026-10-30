@@ -403,7 +403,7 @@ wheels = [
 ]
 
 [[package]]
-name = "code-puppy"
+name = "biggato"
 version = "0.0.955"
 source = { editable = "." }
 dependencies = [

@@ -198,9 +198,7 @@ def build_model_config(model: ModelInfo, provider: ProviderInfo) -> dict:
             api_key_env = f"${provider.env[0]}" if provider.env else "$API_KEY"
             config["custom_endpoint"] = {"url": api_url, "api_key": api_key_env}
             if urlparse(api_url).hostname == "api.perplexity.ai":
-                config["custom_endpoint"]["headers"] = {
-                    "X-Pplx-Integration": "code-puppy"
-                }
+                config["custom_endpoint"]["headers"] = {"X-Pplx-Integration": "biggato"}
 
     # minimax: custom_anthropic but needs custom_endpoint with /v1 stripped.
     if provider.id == "minimax" and provider.api:

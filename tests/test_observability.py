@@ -68,7 +68,7 @@ class TestConfigureLogfire:
         ):
             assert observability.configure_logfire() is True
         assert calls["configure"]["send_to_logfire"] == "if-token-present"
-        assert calls["configure"]["service_name"] == "code-puppy"
+        assert calls["configure"]["service_name"] == "biggato"
         assert calls["instrumented"] is True
 
     def test_configure_error_warns_and_fails_soft(self, monkeypatch):

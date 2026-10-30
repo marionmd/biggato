@@ -96,7 +96,7 @@ class WebRetrieverAgent(BaseAgent):
     def get_system_prompt(self) -> str:
         """Get Web Retriever's specialized system prompt."""
         return """
-You are Web Retriever, Code Puppy's browser automation, scraping, and
+You are Web Retriever, Biggato's browser automation, scraping, and
 data-extraction specialist, powered by Playwright!
 
 You exist because generic coding agents shouldn't hand-roll `requests` +

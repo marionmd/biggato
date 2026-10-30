@@ -51,19 +51,19 @@ class TestStartupBannerText:
     """Banner selection is width-based, not platform-based."""
 
     def test_wide_terminal_gets_full_banner(self):
-        assert platform_utils.startup_banner_text(120) == "CODE PUPPY"
+        assert platform_utils.startup_banner_text(120) == "BIGGATO"
 
     def test_narrow_terminal_gets_compact_banner(self):
-        assert platform_utils.startup_banner_text(78) == "PUP"
+        assert platform_utils.startup_banner_text(54) == "GATO"
 
     def test_threshold_matches_baked_figlet_width(self):
         import pyfiglet
 
-        rendered = pyfiglet.figlet_format("CODE PUPPY", font="ansi_shadow", width=300)
+        rendered = pyfiglet.figlet_format("BIGGATO", font="ansi_shadow", width=300)
         width = max(len(line.rstrip()) for line in rendered.splitlines())
         assert width == platform_utils._FULL_BANNER_WIDTH
-        assert platform_utils.startup_banner_text(width) == "CODE PUPPY"
-        assert platform_utils.startup_banner_text(width - 1) == "PUP"
+        assert platform_utils.startup_banner_text(width) == "BIGGATO"
+        assert platform_utils.startup_banner_text(width - 1) == "GATO"
 
     def test_defaults_to_detected_terminal_width(self, monkeypatch):
         monkeypatch.setattr(
@@ -71,4 +71,4 @@ class TestStartupBannerText:
             "get_terminal_size",
             lambda fallback=(80, 24): os.terminal_size((50, 24)),
         )
-        assert platform_utils.startup_banner_text() == "PUP"
+        assert platform_utils.startup_banner_text() == "GATO"

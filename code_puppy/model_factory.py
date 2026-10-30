@@ -1262,7 +1262,7 @@ class ModelFactory:
                 )
                 return None
             # Add Cerebras 3rd party integration header
-            headers["X-Cerebras-3rd-Party-Integration"] = "code-puppy"
+            headers["X-Cerebras-3rd-Party-Integration"] = "biggato"
             # "cerebras" tells RetryingAsyncClient to ignore Cerebras's aggressive
             # Retry-After headers (they send 60s!). [name] is internal, not provider.
             # httpx2: pydantic-ai's providers deprecate caller-owned legacy httpx clients.

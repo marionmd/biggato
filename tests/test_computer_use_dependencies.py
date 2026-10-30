@@ -42,7 +42,7 @@ def test_locked_extra_selects_platform_dependencies(platform):
     packages = {item["name"]: item for item in _read_toml("uv.lock")["package"]}
     plugin = packages["code-puppy-core-plugins"]
     assert Version(plugin["version"]) >= Version("0.0.83")
-    assert packages["code-puppy"]["optional-dependencies"]["computer-use"] == [
+    assert packages["biggato"]["optional-dependencies"]["computer-use"] == [
         {"name": "code-puppy-core-plugins", "extra": ["computer-use"]}
     ]
     dependencies = plugin["optional-dependencies"]["computer-use"]

@@ -6,7 +6,7 @@ then send an error event before producing the first response chunk. The OpenAI
 SDK raises a bare `openai.APIError`; the class name does not mean the request was
 sent to OpenAI's hosted service.
 
-Code Puppy emits a targeted diagnostic and retains the full exception traceback
+Biggato emits a targeted diagnostic and retains the full exception traceback
 in `~/.code_puppy/logs/errors.log`. The diagnostic does not change retry policy,
 strip images, reset conversation history, or modify the server configuration.
 
@@ -55,4 +55,4 @@ This establishes a server-side draft-decoder failure for that incident. The
 signature alone is not enough to diagnose every server's underlying cause.
 Disabling speculative decoding is a troubleshooting workaround, not a repair to
 llama.cpp's implementation. Updating/fixing that implementation is outside the
-scope of Code Puppy's diagnostic handling.
+scope of Biggato's diagnostic handling.

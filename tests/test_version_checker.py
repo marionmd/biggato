@@ -109,6 +109,20 @@ class TestFetchLatestVersion:
 
         assert version is None
 
+    @patch("code_puppy.version_checker.emit_warning")
+    @patch("code_puppy.version_checker.httpx.get")
+    def test_fetch_latest_version_unpublished_is_quiet(self, mock_get, mock_warn):
+        """A package that isn't on PyPI (404) yields None without a warning."""
+        mock_response = MagicMock()
+        mock_response.status_code = 404
+        mock_get.return_value = mock_response
+
+        version = fetch_latest_version("unpublished-package")
+
+        assert version is None
+        mock_warn.assert_not_called()
+        mock_response.raise_for_status.assert_not_called()
+
 
 class TestDefaultVersionMismatchBehavior:
     """Test default_version_mismatch_behavior function."""

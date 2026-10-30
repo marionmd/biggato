@@ -270,7 +270,7 @@ class TestMain:
         mock_inter = AsyncMock()
         mock_figlet = MagicMock(return_value="LOGO\n\n")
         # Rich's Console honors COLUMNS, so this squeezes the banner width
-        # below the full CODE PUPPY figlet (79 cols).
+        # below the full BIGGATO figlet (55 cols).
         with patch.dict(os.environ, {"COLUMNS": "50"}):
             await self._run_main(
                 ["code-puppy"],
@@ -280,7 +280,7 @@ class TestMain:
                 },
             )
 
-        mock_figlet.assert_called_once_with("PUP", font="ansi_shadow")
+        mock_figlet.assert_called_once_with("GATO", font="ansi_shadow")
 
     @pytest.mark.anyio
     async def test_with_command_args(self):

@@ -119,7 +119,7 @@ def test_malformed_catalog_is_skipped(tmp_path):
 
 # --- interpolation --------------------------------------------------------
 def test_interpolation():
-    assert i18n.t("startup.welcome", name="TJ") == "Welcome to Code Puppy, TJ!"
+    assert i18n.t("startup.welcome", name="TJ") == "Welcome to Biggato, TJ!"
 
 
 @pytest.mark.parametrize(
@@ -160,11 +160,11 @@ def test_core_plugins_unknown_pseudolocalizes_once():
 def test_missing_param_leaves_placeholder():
     # A DIFFERENT param present -> the forgiving-missing path is exercised and
     # the unknown {name} placeholder is preserved verbatim.
-    assert i18n.t("startup.welcome", unrelated="z") == "Welcome to Code Puppy, {name}!"
+    assert i18n.t("startup.welcome", unrelated="z") == "Welcome to Biggato, {name}!"
 
 
 def test_no_params_leaves_placeholder():
-    assert i18n.t("startup.welcome") == "Welcome to Code Puppy, {name}!"
+    assert i18n.t("startup.welcome") == "Welcome to Biggato, {name}!"
 
 
 # --- locale switching -----------------------------------------------------
@@ -172,7 +172,7 @@ def test_locale_switching(tmp_path):
     _write_catalog(tmp_path, "es-ES", {"startup.ready": "Listo!"})
     catalog.add_catalog_dir(str(tmp_path))
 
-    assert i18n.t("startup.ready") == "Ready to fetch some code. \U0001f436"
+    assert i18n.t("startup.ready") == "Ready to pounce on some code. \U0001f431"
     translate.set_locale("es-ES")
     assert i18n.t("startup.ready") == "Listo!"
 
@@ -257,15 +257,16 @@ def test_pseudo_expands_length():
 def test_spanish_catalog_ships_and_resolves():
     translate.set_locale("es")
     assert i18n.t("confirm.yes") == "S\u00ed"
-    assert (
-        i18n.t("startup.welcome", name="TJ") == "\u00a1Bienvenido(a) a Code Puppy, TJ!"
-    )
+    assert i18n.t("startup.welcome", name="TJ") == "\u00a1Bienvenido(a) a Biggato, TJ!"
 
 
 def test_deprecated_es419_resolves_through_base_es():
     # es-419 has no catalog of its own (deprecated); resolves through base es.
     translate.set_locale("es-419")
-    assert i18n.t("startup.ready") == "Listo para ir por el c\u00f3digo. \U0001f436"
+    assert (
+        i18n.t("startup.ready")
+        == "Listo para lanzarse sobre el c\u00f3digo. \U0001f431"
+    )
 
 
 def test_spanish_region_falls_back_to_base_language():
@@ -283,7 +284,10 @@ def test_central_south_american_dialect_inherits_base_es(tmp_path):
     translate.set_locale("es-AR")
     assert i18n.t("confirm.yes") == "Dale"  # from es-AR
     # Inherited from base es (chain skips the missing es-419 catalog).
-    assert i18n.t("startup.ready") == "Listo para ir por el c\u00f3digo. \U0001f436"
+    assert (
+        i18n.t("startup.ready")
+        == "Listo para lanzarse sobre el c\u00f3digo. \U0001f431"
+    )
     # Inherited from en-US default.
     assert i18n.t("confirm.no") == "No"
 
@@ -291,7 +295,7 @@ def test_central_south_american_dialect_inherits_base_es(tmp_path):
 def test_french_canadian_catalog_ships_and_resolves():
     translate.set_locale("fr-CA")
     assert i18n.t("confirm.yes") == "Oui"
-    assert i18n.t("startup.welcome", name="TJ") == "Bienvenue dans Code Puppy, TJ!"
+    assert i18n.t("startup.welcome", name="TJ") == "Bienvenue dans Biggato, TJ!"
 
 
 def test_french_canadian_plurals():
@@ -351,7 +355,7 @@ def test_unshipped_spanish_region_falls_back_to_base_es():
         translate.set_locale(dialect)
         assert i18n.t("confirm.yes") == "S\u00ed"
         assert i18n.t("startup.ready") == (
-            "Listo para ir por el c\u00f3digo. \U0001f436"
+            "Listo para lanzarse sobre el c\u00f3digo. \U0001f431"
         )
         assert i18n.t("confirm.no") == "No"  # inherited from en-US default
 

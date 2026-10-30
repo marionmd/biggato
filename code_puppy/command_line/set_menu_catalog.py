@@ -79,15 +79,15 @@ _IDENTITY = SettingsCategory(
     settings=(
         Setting(
             key="puppy_name",
-            display_name="Puppy Name",
-            description="The name of your Code Puppy agent.",
+            display_name="Cat Name",
+            description="The name of your Biggato agent.",
             type_hint="string",
             effective_getter=get_puppy_name,
         ),
         Setting(
             key="owner_name",
             display_name="Owner Name",
-            description="Your name - how the puppy knows you.",
+            description="Your name - how the cat knows you.",
             type_hint="string",
             effective_getter=get_owner_name,
         ),
@@ -469,8 +469,8 @@ _API_KEYS = SettingsCategory(
     settings=(
         Setting(
             key="puppy_token",
-            display_name="Puppy Token",
-            description="Authentication token for Code Puppy services.",
+            display_name="Biggato Token",
+            description="Authentication token for Biggato services.",
             type_hint="string",
             effective_getter=get_puppy_token,
             sensitive=True,
@@ -598,7 +598,7 @@ _MCP = SettingsCategory(
             key="disable_mcp",
             display_name="Disable MCP",
             description=(
-                "When True, Code Puppy skips loading MCP servers entirely "
+                "When True, Biggato skips loading MCP servers entirely "
                 "at startup. Takes effect after restart."
             ),
             type_hint="bool",

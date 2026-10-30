@@ -43,7 +43,7 @@ def http_auth(config: dict, url: str, headers: dict | None) -> OAuth | None:
     # client_id in the body; strict servers (mcp.cloudflare.com) reject that
     # token request as "multiple authentication methods".
     return OAuth(
-        client_name="Code Puppy",
+        client_name="Biggato",
         callback_host="127.0.0.1",
         additional_client_metadata={"token_endpoint_auth_method": "none"},
     )

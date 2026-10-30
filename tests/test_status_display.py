@@ -371,11 +371,11 @@ class TestStatusDisplay:
         # Should have variety (not all the same)
         assert len(set(messages)) > 1
 
-        # Should be puppy-themed
-        puppy_terms = ["puppy", "paws", "tail", "barking", "panting"]
+        # Should be cat-themed
+        cat_terms = ["cat", "paws", "tail", "purring", "pouncing"]
         combined_text = " ".join(messages).lower()
-        has_puppy_theme = any(term in combined_text for term in puppy_terms)
-        assert has_puppy_theme
+        has_cat_theme = any(term in combined_text for term in cat_terms)
+        assert has_cat_theme
 
     def test_concurrent_rate_updates(self, status_display):
         """Test handling concurrent rate updates."""
@@ -451,7 +451,7 @@ class TestStatusDisplay:
         assert panel.padding == (1, 2)
 
         # Check title styling exists
-        assert panel.title == "[bold blue]Code Puppy Status[/bold blue]"
+        assert panel.title == "[bold blue]Biggato Status[/bold blue]"
 
     def test_memory_efficiency(self, status_display):
         """Test that status display doesn't accumulate memory unnecessarily."""

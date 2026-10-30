@@ -257,7 +257,7 @@ class OnboardingTUI:
         width = max(10, width - 1)
         s = menu_style() or RenderStyle.default()
         lines = [
-            f"{fg_color(s.bright)}{BOLD_ON}Code Puppy Tutorial{RESET}",
+            f"{fg_color(s.bright)}{BOLD_ON}Biggato Tutorial{RESET}",
             "",
             *_fragments_to_lines(_get_slide_panel_content(self._wizard)),
         ]
@@ -360,7 +360,7 @@ async def run_onboarding_wizard() -> Optional[str]:
     if wizard.result == "skipped":
         emit_info("✓ Tutorial skipped")
     elif wizard.result == "completed":
-        emit_info("✓ Tutorial completed! Welcome to Code Puppy! 🐶")
+        emit_info("✓ Tutorial completed! Welcome to Biggato! 🐱")
     else:
         emit_info("✓ Exited tutorial")
 
@@ -407,7 +407,7 @@ def require_model_setup_if_needed(wizard_result: Optional[str]) -> None:
 
     emit_warning(
         "\U0001f6a8 No model configured yet!\n"
-        "   Code Puppy ships with an empty model list, so you need to add one:\n"
+        "   Biggato ships with an empty model list, so you need to add one:\n"
         "   \u2022 Run /add_model to browse + add a model (API key required), or\n"
         "   \u2022 Run /tutorial again and pick Claude Code or ChatGPT OAuth."
     )

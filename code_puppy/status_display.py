@@ -36,21 +36,21 @@ class StatusDisplay:
         self._paused_total = 0.0  # cumulative seconds spent paused
         self._paused_total_at_last_update = 0.0  # paused total at last rate calc
         self.loading_messages = [
-            "Fetching...",
+            "Prowling...",
             "Sniffing around...",
-            "Wagging tail...",
+            "Swishing tail...",
             "Pawsing for a moment...",
-            "Chasing tail...",
+            "Chasing the laser pointer...",
             "Digging up results...",
-            "Barking at the data...",
-            "Rolling over...",
-            "Panting with excitement...",
-            "Chewing on it...",
-            "Prancing along...",
-            "Howling at the code...",
-            "Snuggling up to the task...",
-            "Bounding through data...",
-            "Puppy pondering...",
+            "Purring at the data...",
+            "Stretching...",
+            "Kneading the code...",
+            "Batting it around...",
+            "Tiptoeing along...",
+            "Pouncing on the code...",
+            "Curling up with the task...",
+            "Leaping through data...",
+            "Cat contemplating...",
         ]
         self.current_message_index = 0
         self.spinner = Spinner("dots", text="")
@@ -211,7 +211,7 @@ class StatusDisplay:
         # Use expanded panel with more visible formatting
         return Panel(
             status_text,
-            title="[bold blue]Code Puppy Status[/bold blue]",
+            title="[bold blue]Biggato Status[/bold blue]",
             border_style="bright_blue",
             expand=False,
             padding=(1, 2),

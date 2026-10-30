@@ -1,4 +1,4 @@
-"""Version checking utilities for Code Puppy."""
+"""Version checking utilities for Biggato."""
 
 import threading
 
@@ -48,6 +48,9 @@ def versions_are_equal(current, latest):
 def fetch_latest_version(package_name):
     try:
         response = httpx.get(f"https://pypi.org/pypi/{package_name}/json", timeout=5.0)
+        if response.status_code == 404:
+            # Not published on PyPI (yet): nothing to compare against.
+            return None
         response.raise_for_status()
         data = response.json()
         return data["info"]["version"]
@@ -71,7 +74,7 @@ def default_version_mismatch_behavior(current_version) -> threading.Thread:
         emit_warning(t("version.undetected"))
 
     def _check() -> None:
-        report_version_status(current_version, fetch_latest_version("code-puppy"))
+        report_version_status(current_version, fetch_latest_version("biggato"))
 
     thread = threading.Thread(target=_check, name="version-check", daemon=True)
     thread.start()

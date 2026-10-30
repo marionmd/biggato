@@ -156,7 +156,7 @@ class TestSandboxMountPath:
 async def test_run_code_executes_trivial_snippet_with_compatible_monty(flag):
     """Our Monty range and the harness's must both admit the installed Monty."""
     installed = importlib.metadata.version("pydantic-monty")
-    for distribution in ("code-puppy", "pydantic-ai-harness"):
+    for distribution in ("biggato", "pydantic-ai-harness"):
         monty_requirement = next(
             Requirement(dependency)
             for dependency in requires(distribution) or []

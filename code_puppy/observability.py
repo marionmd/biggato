@@ -59,7 +59,7 @@ def configure_logfire() -> bool:
 
     try:
         logfire.configure(
-            service_name="code-puppy",
+            service_name="biggato",
             send_to_logfire="if-token-present",
             console=False,
         )

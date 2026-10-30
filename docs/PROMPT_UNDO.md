@@ -33,16 +33,16 @@ The editor has no text selection, so there is no "cut" or "paste over a
 selection". The kill keys (`Ctrl+U` / `Ctrl+K` / `Ctrl+W`) are the cut
 equivalents, and they are undoable like everything else.
 
-## Ctrl+Z no longer suspends Code Puppy
+## Ctrl+Z no longer suspends Biggato
 
 On macOS and Linux, `Ctrl+Z` normally sends `SIGTSTP` and suspends the
-process. While the Code Puppy prompt owns the terminal, it turns off the
+process. While the Biggato prompt owns the terminal, it turns off the
 terminal's suspend character (`VSUSP`) so `Ctrl+Z` reaches the prompt as a
 key. On macOS/BSD it also turns off the delayed-suspend character (`VDSUSP`,
 which is `Ctrl+Y`). Both settings come back when the prompt gives up the
-terminal (for example while a full-screen menu is open, or when Code Puppy
+terminal (for example while a full-screen menu is open, or when Biggato
 exits). `Ctrl+\` (`SIGQUIT`) is unchanged. If you
-really want to suspend Code Puppy, run `kill -TSTP <pid>` from another shell.
+really want to suspend Biggato, run `kill -TSTP <pid>` from another shell.
 
 On Windows, the prompt reads raw console input, so `Ctrl+Z` comes in as a
 key event. It never inserts `^Z` and never means end-of-file.
@@ -51,7 +51,7 @@ key event. It never inserts `^Z` and never means end-of-file.
 
 By default, terminals send nothing to the program for `Cmd`+letter. Either
 the terminal handles the shortcut itself, or it has no legacy byte encoding
-for it. Code Puppy recognizes `Cmd` when the terminal reports it as the
+for it. Biggato recognizes `Cmd` when the terminal reports it as the
 **super** modifier in a CSI-u (kitty keyboard protocol / fixterms) sequence:
 
 | Keys | Sequence to send |
@@ -64,7 +64,7 @@ It also understands `Ctrl+Z` / `Ctrl+Y` / `Cmd+Y` as CSI-u, the
 modifyOtherKeys form `ESC [ 27 ; <mods> ; <code> ~`, uppercase key codes
 (`90`, `89`), and kitty's `code;mods:event` form (key releases are ignored).
 
-Code Puppy does **not** turn on the kitty keyboard protocol itself. Doing so
+Biggato does **not** turn on the kitty keyboard protocol itself. Doing so
 would re-encode `Esc`, `Enter`, `Backspace` and `Alt` combinations for the
 whole session. Instead, map the keys you want in your terminal:
 

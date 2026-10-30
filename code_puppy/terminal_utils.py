@@ -617,7 +617,7 @@ def print_truecolor_warning(console: Optional["Console"] = None) -> None:
             print("\n" + "=" * 70)
             print("⚠️  WARNING: TERMINAL DOES NOT SUPPORT TRUECOLOR (24-BIT COLOR)")
             print("=" * 70)
-            print("Code Puppy looks best with truecolor support.")
+            print("Biggato looks best with truecolor support.")
             print("Consider using a modern terminal like:")
             print("  • iTerm2 (macOS)")
             print("  • Windows Terminal (Windows)")
@@ -648,7 +648,7 @@ def print_truecolor_warning(console: Optional["Console"] = None) -> None:
         "",
         f"[yellow]Detected color system:[/] [bold]{color_system}[/]",
         "",
-        "[bold white]Code Puppy uses rich colors and will look degraded without truecolor.[/]",
+        "[bold white]Biggato uses rich colors and will look degraded without truecolor.[/]",
         "",
         "[cyan]Consider using a modern terminal emulator:[/]",
         "  [green]•[/] [bold]iTerm2[/] (macOS) - https://iterm2.com",

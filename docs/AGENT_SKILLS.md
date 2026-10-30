@@ -2,7 +2,7 @@
 
 > **Official Spec:** [https://agentskills.io](https://agentskills.io)
 
-Agent Skills are reusable, modular capabilities that extend Code Puppy's functionality. Think of them as specialized training packets you can dynamically load when needed—like teaching your puppy new tricks on demand! 🐕
+Agent Skills are reusable, modular capabilities that extend Biggato's functionality. Think of them as specialized training packets you can dynamically load when needed—like teaching your puppy new tricks on demand! 🐕
 
 ---
 
@@ -38,11 +38,11 @@ Skills enable you to:
 
 ## Installing Skills
 
-Skills are installed by placing them in designated skill directories. Code Puppy scans these directories at startup to discover available skills.
+Skills are installed by placing them in designated skill directories. Biggato scans these directories at startup to discover available skills.
 
 ### Default Skill Directories
 
-By default, Code Puppy looks for skills in:
+By default, Biggato looks for skills in:
 
 1. **`~/.code_puppy/skills/`** - User-level skills (global)
 2. **`./skills/`** - Project-level skills (local)
@@ -98,7 +98,7 @@ By default, Code Puppy looks for skills in:
 
 ## Using the /skills TUI Menu
 
-Code Puppy provides an interactive TUI (Text User Interface) for managing skills.
+Biggato provides an interactive TUI (Text User Interface) for managing skills.
 
 ### Launching the Menu
 
@@ -159,7 +159,7 @@ Skills integrate with agents through two mechanisms: **prompt injection** and **
 
 ### 1. Prompt Injection
 
-When skills are enabled, Code Puppy automatically injects available skills into the system prompt:
+When skills are enabled, Biggato automatically injects available skills into the system prompt:
 
 ```xml
 <available_skills>
@@ -223,7 +223,7 @@ activate_skill(skill_name="docker")
 
 ### Skill Activation Flow
 
-1. **Discovery** → Code Puppy scans skill directories at startup
+1. **Discovery** → Biggato scans skill directories at startup
 2. **Prompt Injection** → Available skills are listed in the system prompt
 3. **User Request** → User asks for help with a specific domain
 4. **Skill Selection** → Agent identifies the relevant skill
@@ -248,12 +248,12 @@ directory - the same shape OpenAI ships for large tool catalogs
 (tool_search + namespace grouping) and Anthropic ships for large MCP
 tool sets (Tool Search Tool), reimplemented here in a model-agnostic
 way so it behaves identically on Claude, GPT, Gemini, or any other
-provider wired through Code Puppy's ModelFactory.
+provider wired through Biggato's ModelFactory.
 
 ### What changes automatically
 
 This plugin is builtin and on by default - you don't need to install or
-configure anything. The first time Code Puppy starts with it present:
+configure anything. The first time Biggato starts with it present:
 
 1. Every enabled skill gets grouped into a **namespace**, derived from
    its first `tags:` entry in `SKILL.md` (untagged skills land in a
@@ -522,7 +522,7 @@ These resources are listed when the skill is activated via the `resources` field
 
 ## Configuration Options
 
-Agent Skills can be configured through Code Puppy's configuration system.
+Agent Skills can be configured through Biggato's configuration system.
 
 ### Configuration Keys
 
@@ -587,7 +587,7 @@ disabled_skills = ["deprecated-skill"]
 
 ## Security Considerations
 
-⚠️ **Important:** Skills execute with the same permissions as Code Puppy. Follow these security best practices:
+⚠️ **Important:** Skills execute with the same permissions as Biggato. Follow these security best practices:
 
 ### Skill Sources
 
@@ -611,9 +611,9 @@ disabled_skills = ["deprecated-skill"]
 Skills can access:
 - Files within their own directory
 - The project working directory
-- Any files Code Puppy has access to
+- Any files Biggato has access to
 
-**Recommendation:** Run Code Puppy with minimal necessary permissions.
+**Recommendation:** Run Biggato with minimal necessary permissions.
 
 ### Network Security
 
@@ -640,7 +640,7 @@ If you discover a security vulnerability in a skill:
 
 1. Disable the skill immediately: `/skills disable <skill-name>`
 2. Report to the skill author
-3. For core skills functionality issues, report to Code Puppy
+3. For core skills functionality issues, report to Biggato
 
 ### Skill Verification
 
@@ -659,7 +659,7 @@ Before installing a skill, verify:
 Here's a complete example of using Agent Skills:
 
 ```bash
-# 1. Start Code Puppy
+# 1. Start Biggato
 code-puppy
 
 # 2. Check available skills

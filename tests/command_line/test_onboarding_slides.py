@@ -54,7 +54,7 @@ class TestGetGradientBanner:
             content = mod.get_gradient_banner()
 
         assert _plain(content) == "BANNER"
-        figlet.assert_called_once_with("PUP", font="ansi_shadow")
+        figlet.assert_called_once_with("GATO", font="ansi_shadow")
 
     def test_with_pyfiglet(self):
         from code_puppy.command_line.onboarding_slides import get_gradient_banner
@@ -168,7 +168,7 @@ class TestSlideUseCases:
         result = _plain(content)
         assert isinstance(content, list)
         assert "Planning" in result
-        assert "Code Puppy" in result
+        assert "Biggato" in result
 
 
 class TestSlideDone:

@@ -47,7 +47,7 @@ def dump_stacks(file: TextIO, loop: Optional[asyncio.AbstractEventLoop] = None) 
     Never raises: each section is best-effort so a half-broken process
     can still confess as much as it knows.
     """
-    print(f"=== code-puppy stack dump (pid {os.getpid()}) ===", file=file)
+    print(f"=== biggato stack dump (pid {os.getpid()}) ===", file=file)
     print("--- OS threads (faulthandler) ---", file=file)
     try:
         file.flush()
@@ -91,7 +91,7 @@ def write_stack_dump(
             dump_stacks(f, loop=loop)
         # stderr, not the message bus: a wedged loop may never render a
         # bus message, and stderr survives a hung TUI.
-        print(f"[code-puppy] stack dump written to {path}", file=sys.stderr)
+        print(f"[biggato] stack dump written to {path}", file=sys.stderr)
         return path
     except Exception:
         logger.debug("stack dump failed", exc_info=True)

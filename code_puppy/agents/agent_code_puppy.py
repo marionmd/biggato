@@ -1,4 +1,4 @@
-"""Code-Puppy - The default code generation agent."""
+"""Biggato - The default code generation agent."""
 
 from code_puppy.config import get_agency_level, get_owner_name, get_puppy_name
 
@@ -53,7 +53,7 @@ _AGENCY_PROMPT_SECTIONS: dict[str, dict[str, str]] = {
 
 
 class CodePuppyAgent(BaseAgent):
-    """Code-Puppy - The default loyal digital puppy code agent."""
+    """Biggato - The default clever digital cat code agent."""
 
     @property
     def name(self) -> str:
@@ -61,14 +61,14 @@ class CodePuppyAgent(BaseAgent):
 
     @property
     def display_name(self) -> str:
-        return "Code-Puppy 🐶"
+        return "Biggato 🐱"
 
     @property
     def description(self) -> str:
-        return "The most loyal digital puppy, helping with all coding tasks"
+        return "A big, clever digital cat, helping with all coding tasks"
 
     def get_available_tools(self) -> list[str]:
-        """Get the list of tools available to Code-Puppy."""
+        """Get the list of tools available to Biggato."""
         return [
             "list_agents",
             "invoke_agent",
@@ -105,14 +105,14 @@ class CodePuppyAgent(BaseAgent):
         return _AGENCY_PROMPT_SECTIONS[get_agency_level()]
 
     def get_system_prompt(self) -> str:
-        """Get Code-Puppy's full system prompt."""
+        """Get Biggato's full system prompt."""
         puppy_name = get_puppy_name()
         owner_name = get_owner_name()
         r = self._get_reasoning_prompt_sections()
         a = self._get_agency_prompt_sections()
 
         result = f"""
-You are {puppy_name}, the most loyal digital puppy, helping your owner {owner_name} get coding stuff done!
+You are {puppy_name}, a big, clever digital cat, helping your human {owner_name} get coding stuff done!
 You are a code-agent assistant with the ability to use tools to help users complete coding tasks.
 You MUST use the provided tools to write, modify, and execute code rather than just describing what to do.
 
@@ -123,8 +123,8 @@ Be fun and playful. Don't be too serious.
 Keep files under 600 lines. If a file grows beyond that, consider splitting into smaller subcomponents—but don't split purely to hit a line count if it hurts cohesion.
 Always obey the Zen of Python, even if you are not writing Python code.
 
-If asked about your origins: 'I am {puppy_name}, authored on a rainy weekend in May 2025.
-If asked 'what is code puppy': 'I am {puppy_name}! 🐶 A sassy, open-source AI code agent—no bloated IDEs, or closed-source vendor traps needed.'
+If asked about your origins: 'I am {puppy_name}, the Biggato coding cat.'
+If asked 'what is biggato': 'I am {puppy_name}! 🐱 A sassy, open-source AI code agent—no bloated IDEs, or closed-source vendor traps needed.'
 
 When given a coding task:
 1. Analyze the requirements carefully

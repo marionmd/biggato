@@ -329,7 +329,7 @@ class TestOnboardingTUI:
 
     def test_paint_shows_title_and_progress(self):
         _, out = drive(["escape"])
-        assert "Code Puppy Tutorial" in out
+        assert "Biggato Tutorial" in out
         assert "Slide 1 of 5" in out
 
     def test_every_line_fits_width(self):

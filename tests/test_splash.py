@@ -124,8 +124,8 @@ class TestFrame:
         import pyfiglet
 
         for text, baked in (
-            ("CODE PUPPY", splash._BANNER_FULL),
-            ("PUP", splash._BANNER_COMPACT),
+            ("BIGGATO", splash._BANNER_FULL),
+            ("GATO", splash._BANNER_COMPACT),
         ):
             rendered = pyfiglet.figlet_format(text, font="ansi_shadow", width=300)
             lines = [ln.rstrip() for ln in rendered.splitlines()]
@@ -140,8 +140,8 @@ class TestComposeRows:
         assert kinds.count("art") == len(splash._PAW)
         assert kinds.count("text") == 1 + len(splash._BANNER_FULL)
 
-    def test_medium_terminal_gets_compact_pup(self):
-        rows = splash._compose_rows(70, 50)
+    def test_medium_terminal_gets_compact_gato(self):
+        rows = splash._compose_rows(50, 50)
         text_rows = [c for k, c in rows if k == "text" and c]
         assert len(text_rows) == len(splash._BANNER_COMPACT)
         assert "\u2588" in text_rows[0]
@@ -179,13 +179,11 @@ class TestComposeRows:
         rows = [("art", "123")]
         assert splash._center_rows(rows, 2) == rows
 
-    def test_compact_pup_centered_under_paw(self):
-        rows = splash._compose_rows(70, 50)
+    def test_compact_gato_centered_under_paw(self):
+        rows = splash._compose_rows(50, 50)
         text_lines = [c for k, c in rows if k == "text" and c]
-        expected_pad = (splash._PAW_WIDTH - splash._BANNER_COMPACT_WIDTH) // 2
-        for line in text_lines:
-            assert line.startswith(" " * expected_pad)
-            assert not line.startswith(" " * (expected_pad + 1))
+        pad = " " * ((splash._PAW_WIDTH - splash._BANNER_COMPACT_WIDTH) // 2)
+        assert text_lines == [pad + line for line in splash._BANNER_COMPACT]
 
 
 class TestLifecycle:

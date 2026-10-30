@@ -41,7 +41,7 @@ def get_nav_footer() -> SlideContent:
 
 
 def get_gradient_banner() -> SlideContent:
-    """Generate the CODE PUPPY banner using the semantic header style."""
+    """Generate the BIGGATO banner using the semantic header style."""
     try:
         import pyfiglet
 
@@ -140,7 +140,7 @@ def slide_use_cases() -> SlideContent:
     """Slide 4: when to use each agent."""
     content: SlideContent = [
         ("class:tui.header", " When to Use What\n\n"),
-        ("class:tui.warning", " Code Puppy (default)\n"),
+        ("class:tui.warning", " Biggato (default)\n"),
         ("class:tui.success", "  USE FOR:"),
         (
             "class:tui.body",

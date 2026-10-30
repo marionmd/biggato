@@ -1,4 +1,4 @@
-# Contributing to Code Puppy
+# Contributing to Biggato
 
 > **Golden rule:** nearly all new functionality should be a **plugin** in the
 > `code_puppy_core_plugins` repository that hooks into core via
@@ -13,7 +13,7 @@
 5. **Return `None` from commands you don't own**
 6. **Always run linters** — `ruff check --fix`, `ruff format .`
 7. **NEVER ALLOW A CLAUDE CO-AUTHOR COMMIT**
-8. **Keep this file under 10,000 characters** — Code Puppy drops everything
+8. **Keep this file under 10,000 characters** — Biggato drops everything
    past that. Put reference material in `docs/`; `tests/test_agents_md_size.py`
    enforces the cap.
 
@@ -45,7 +45,7 @@ That's it. The plugin loader auto-discovers `register_callbacks.py` in subdirs.
 `<CWD>/.code_puppy/plugins/<name>/register_callbacks.py`, mirroring project
 agents (`.code_puppy/agents/`) and skills (`.code_puppy/skills/`).
 
-- **Opt-in directory.** Code Puppy never auto-creates `.code_puppy/plugins/`.
+- **Opt-in directory.** Biggato never auto-creates `.code_puppy/plugins/`.
 - **Untrusted by default.** Project plugins run repo code at import, so none
   load until accepted in the `/plugins` TUI (select → Enter → type `trust`);
   they then hot-load. Trust is a SHA-256 of the plugin dir, scoped to the

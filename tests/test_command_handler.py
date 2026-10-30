@@ -251,7 +251,7 @@ def test_show_status():
             assert result is True
             mock_emit_info.assert_called()
             assert any(
-                "Puppy Status" in str(call)
+                "Biggato Status" in str(call)
                 and "Ivan" in str(call)
                 and "Biscuit" in str(call)
                 and "MODEL-X" in str(call)

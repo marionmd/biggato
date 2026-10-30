@@ -1,4 +1,4 @@
-"""Installed distribution metadata for Code Puppy."""
+"""Installed distribution metadata for Biggato."""
 
 import importlib.metadata
 
@@ -33,5 +33,4 @@ def get_core_plugins_version() -> str | None:
     return normalized_version
 
 
-# Biscuit was here! 🐶
-__version__ = _get_distribution_version("code-puppy", "0.0.0-dev")
+__version__ = _get_distribution_version("biggato", "0.0.0-dev")

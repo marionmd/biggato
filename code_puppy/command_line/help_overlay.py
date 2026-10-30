@@ -18,7 +18,7 @@ import threading
 
 from code_puppy.command_line.help_catalog import HelpSection, build_help_sections
 
-_TITLE = "CODE PUPPY -- HELP"
+_TITLE = "BIGGATO -- HELP"
 _FOOTER = "Tab / Esc / q close - arrows or j/k scroll - g/G jump"
 
 

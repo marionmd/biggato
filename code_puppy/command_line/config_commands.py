@@ -23,7 +23,7 @@ def get_commands_help():
 
 @register_command(
     name="show",
-    description="Show puppy config key-values",
+    description="Show Biggato config key-values",
     usage="/show",
     category="config",
 )
@@ -70,7 +70,7 @@ def handle_show_command(command: str) -> bool:
     current_agent = get_current_agent()
     default_agent = get_default_agent()
 
-    status_msg = f"""[bold magenta]🐶 Puppy Status[/bold magenta]
+    status_msg = f"""[bold magenta]🐱 Biggato Status[/bold magenta]
 
 [bold]puppy_name:[/bold]            [cyan]{puppy_name}[/cyan]
 [bold]owner_name:[/bold]            [cyan]{owner_name}[/cyan]
@@ -96,7 +96,7 @@ def handle_show_command(command: str) -> bool:
 
 @register_command(
     name="set",
-    description="Set puppy config (e.g., /set yolo_mode true) or launch interactive menu",
+    description="Set Biggato config (e.g., /set yolo_mode true) or launch interactive menu",
     usage="/set [key [value]]",
     category="config",
 )

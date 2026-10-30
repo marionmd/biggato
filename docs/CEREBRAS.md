@@ -1,7 +1,7 @@
-# 🐶 How to Use Code Puppy in cerebras most effective 
+# 🐶 How to Use Biggato in cerebras most effective 
 
 ### 1. First Startup & The "Enter" Quirk
-After installation, run `code-puppy` in your terminal.
+After installation, run `biggato` in your terminal.
 1.  **Name your agent:** Enter any name (e.g., `PuppyBot`).
 2.  **The Blank Enter:** Once the tool starts, **hit `Enter` one time** on the blank line.
     *   *Note: The tool often fails to recognize commands like `/set` until this first blank enter is registered.*
@@ -26,7 +26,7 @@ Copy and paste these commands one by one to set up your keys, authentication, an
 *(Note: You can pin different reviewers depending on your language needs, e.g., java-reviewer)*
 
 ### 3. Restart
-**Close and restart** Code Puppy. This ensures all configurations and pinned models are loaded correctly.
+**Close and restart** Biggato. This ensures all configurations and pinned models are loaded correctly.
 
 ### 4. Running the Planning Agent
 To start a task, always switch to the planning agent first. It will plan, verify with you, and then drive the other agents.

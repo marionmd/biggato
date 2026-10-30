@@ -112,9 +112,7 @@ class TestBuildModelConfig:
         provider = make_provider(id="perplexity", api="N/A", env=["PERPLEXITY_API_KEY"])
         config = amm.build_model_config(make_model(), provider)
         assert config["custom_endpoint"]["url"] == "https://api.perplexity.ai"
-        assert config["custom_endpoint"]["headers"] == {
-            "X-Pplx-Integration": "code-puppy"
-        }
+        assert config["custom_endpoint"]["headers"] == {"X-Pplx-Integration": "biggato"}
 
     def test_integration_header_only_for_perplexity_host(self):
         for api in (

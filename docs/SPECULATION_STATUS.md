@@ -49,7 +49,7 @@ patch or dependency upgrade is needed.
 ## Requirements for any runway at all
 
 - **Streamed tool names must be `run_code`.** Claude Code OAuth models call
-  `cp_run_code` on the wire and Code Puppy only un-prefixes at dispatch, which
+  `cp_run_code` on the wire and Biggato only un-prefixes at dispatch, which
   is too late for the harness stream watchers. `StreamedToolNameNormalizer`
   (registered with the speculative capability) rewrites the streamed part
   events so the eager pump and speculation launcher engage.

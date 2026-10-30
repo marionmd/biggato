@@ -113,7 +113,7 @@ class TestDisplaySubagentSkip:
 
 class TestInitVersionFallback:
     def test_version_fallback_on_exception(self):
-        """The Code Puppy version keeps its development fallback on lookup errors."""
+        """The Biggato version keeps its development fallback on lookup errors."""
         with patch(
             "importlib.metadata.version", side_effect=Exception("nope")
         ) as mock_version:
@@ -124,10 +124,10 @@ class TestInitVersionFallback:
 
             importlib.reload(code_puppy)
             assert code_puppy.__version__ == "0.0.0-dev"
-            mock_version.assert_called_once_with("code-puppy")
+            mock_version.assert_called_once_with("biggato")
 
     def test_version_fallback_on_empty(self):
-        """The Code Puppy version keeps its development fallback when empty."""
+        """The Biggato version keeps its development fallback when empty."""
         with patch("importlib.metadata.version", return_value="") as mock_version:
             import importlib
 
@@ -135,7 +135,7 @@ class TestInitVersionFallback:
 
             importlib.reload(code_puppy)
             assert code_puppy.__version__ == "0.0.0-dev"
-            mock_version.assert_called_once_with("code-puppy")
+            mock_version.assert_called_once_with("biggato")
 
     @pytest.mark.parametrize("metadata_version", ["0.0.2", "  1.2.3rc1+build.5  "])
     def test_core_plugins_version_uses_installed_distribution_metadata(

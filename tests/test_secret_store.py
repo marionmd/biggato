@@ -47,12 +47,12 @@ def _pointer(store, name, service=None):
 def _reset_state():
     """Reset process-global state between tests."""
     secret_store._warned_fallback = False
-    secret_store._service_name = "code-puppy"
+    secret_store._service_name = "biggato"
     secret_store._backend_installed = True  # skip lazy install in these tests
     secret_store._windows_acl_hardened = None
     yield
     secret_store._warned_fallback = False
-    secret_store._service_name = "code-puppy"
+    secret_store._service_name = "biggato"
     secret_store._backend_installed = False
     secret_store._windows_acl_hardened = None
 
@@ -149,7 +149,7 @@ def null_keyring():
 
 class TestServiceName:
     def test_default(self):
-        assert secret_store.get_service_name() == "code-puppy"
+        assert secret_store.get_service_name() == "biggato"
 
     def test_override(self):
         secret_store.configure_service_name("my-custom-distribution")
@@ -719,7 +719,7 @@ class TestFallbackServiceIsolation:
     ):
         """A pre-scoping flat file stays readable under the default service."""
         tmp_fallback.write_text(json.dumps({"legacy": "old"}))
-        assert secret_store.get_service_name() == "code-puppy"
+        assert secret_store.get_service_name() == "biggato"
         assert secret_store.get_secret("legacy") == "old"
 
 

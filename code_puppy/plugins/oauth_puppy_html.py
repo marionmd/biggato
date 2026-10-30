@@ -124,7 +124,7 @@ def oauth_success_html(service_name: str, extra_message: Optional[str] = None) -
     service = _clean(service_name, "OAuth")
     message = _clean(
         extra_message,
-        "Authentication is complete. You can return to Code Puppy.",
+        "Authentication is complete. You can return to Biggato.",
     )
     return _render_page(
         service=service,
@@ -147,7 +147,7 @@ def oauth_failure_html(service_name: str, reason: str) -> str:
         title="Couldn't connect",
         message=message,
         status="Authentication incomplete",
-        hint="Return to Code Puppy and try signing in again.",
+        hint="Return to Biggato and try signing in again.",
     )
 
 
@@ -182,8 +182,8 @@ def _render_page(
 </head>
 <body>
   <main class="card {state}">
-    <div class="mark" aria-hidden="true">CP</div>
-    <p class="eyebrow">Code Puppy · {service}</p>
+    <div class="mark" aria-hidden="true">BG</div>
+    <p class="eyebrow">Biggato · {service}</p>
     <h1>{title}</h1>
     <p class="message">{message}</p>
     <div class="status" role="status">{status}</div>

@@ -382,15 +382,13 @@ def ensure_config_exists():
         # Note: Using sys.stdout here for initial setup before messaging system is available
         import sys
 
-        sys.stdout.write("🐾 Let's get your Puppy ready!\n")
+        sys.stdout.write("🐾 Let's get your Biggato ready!\n")
         sys.stdout.flush()
         for key in missing:
             if key == "puppy_name":
-                val = input("What should we name the puppy? ").strip()
+                val = input("What should we name your cat? ").strip()
             elif key == "owner_name":
-                val = input(
-                    "What's your name (so Code Puppy knows its owner)? "
-                ).strip()
+                val = input("What's your name (so Biggato knows its human)? ").strip()
             else:
                 val = input(f"Enter {key}: ").strip()
             prompted_values[key] = val
@@ -455,7 +453,7 @@ def get_falsy_bool_value(key: str, default_val: bool) -> bool:
 
 
 def get_puppy_name():
-    return get_value("puppy_name") or "Puppy"
+    return get_value("puppy_name") or "Biggato"
 
 
 def get_owner_name():
@@ -1101,7 +1099,7 @@ def _warn_no_model_available() -> None:
         from code_puppy.messaging import emit_warning
 
         emit_warning(
-            "\u26a0\ufe0f  No model is configured! Code Puppy can't talk to an LLM "
+            "\u26a0\ufe0f  No model is configured! Biggato can't talk to an LLM "
             "until you add one.\n"
             "   \u2022 Run /add_model to pick a model + API key, or\n"
             "   \u2022 Run /tutorial and choose Claude Code or ChatGPT OAuth."

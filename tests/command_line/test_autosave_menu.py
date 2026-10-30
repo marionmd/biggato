@@ -592,7 +592,7 @@ class TestSessionBrowser:
         )
         assert result.session == "debug-restore"
         assert not result.cancelled
-        assert "CODE PUPPY" in output
+        assert "BIGGATO" in output
         assert "PROJECTS (3)" in output
         assert "Fix pyte rendering gaps" in output
         assert "90k tok" in output

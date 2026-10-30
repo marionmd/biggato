@@ -1,4 +1,4 @@
-# TTFT profile: where a cold `code-puppy -p hi` spends its time
+# TTFT profile: where a cold `biggato -p hi` spends its time
 
 Measured on macOS / Python 3.14 / pydantic-ai 2.35 against
 `claude-code-claude-fable-5-1`, stdout piped. Numbers are typical of ~10

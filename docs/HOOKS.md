@@ -1,6 +1,6 @@
-# Code Puppy Hooks
+# Biggato Hooks
 
-Hooks let you intercept and control every tool call the agent makes — before it runs, after it runs, or both. They are compatible with the Claude Code `.claude/settings.json` format, so any hook script that works in Claude Code works in Code Puppy out of the box.
+Hooks let you intercept and control every tool call the agent makes — before it runs, after it runs, or both. They are compatible with the Claude Code `.claude/settings.json` format, so any hook script that works in Claude Code works in Biggato out of the box.
 
 ---
 
@@ -67,7 +67,7 @@ exit 0
 
 Make it executable: `chmod +x .claude/hooks/no-git.sh`
 
-Restart Code Puppy — any attempt to run a `git` command will be blocked cleanly.
+Restart Biggato — any attempt to run a `git` command will be blocked cleanly.
 
 ---
 
@@ -141,9 +141,9 @@ For `PostToolUse`, the payload also includes `tool_result` and `tool_duration_ms
 "replace_in_file"                 exact internal tool name
 ```
 
-**Code Puppy tool name mapping:**
+**Biggato tool name mapping:**
 
-| Claude Code Name | Code Puppy Internal Name |
+| Claude Code Name | Biggato Internal Name |
 |-----------------|--------------------------|
 | `Bash` | `shell` |
 | `Edit` | `replace_in_file` |
@@ -195,7 +195,7 @@ Use `Bash|shell` to catch shell commands with either name.
 
 ## Implementation Notes
 
-The hook engine lives in `code_puppy/hook_engine/` and is a self-contained library with no dependency on the rest of Code Puppy.
+The hook engine lives in `code_puppy/hook_engine/` and is a self-contained library with no dependency on the rest of Biggato.
 
 Hooks are injected at the `pydantic-ai` `ToolManager._call_tool()` level via a patch in `code_puppy/pydantic_patches.py`, so they fire on every tool call regardless of which agent or model is in use.
 

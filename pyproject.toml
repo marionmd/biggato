@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "code-puppy"
+name = "biggato"
 version = "0.0.955"
 description = "Code generation agent"
 readme = "README.md"
@@ -73,13 +73,12 @@ computer-use = [
 ]
 
 [project.urls]
-repository = "https://github.com/mpfaffenberger/code_puppy"
-HomePage = "https://github.com/mpfaffenberger/code_puppy"
+repository = "https://github.com/marionmd/biggato"
+HomePage = "https://github.com/marionmd/biggato"
 
 
 [project.scripts]
-code-puppy = "code_puppy.main:main_entry"
-pup = "code_puppy.main:main_entry"
+biggato = "code_puppy.main:main_entry"
 
 [tool.logfire]
 ignore_no_config = true

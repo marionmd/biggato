@@ -16,6 +16,6 @@ REPO_AGENTS_MD = Path(__file__).resolve().parents[1] / "AGENTS.md"
 def test_repo_agents_md_fits_default_cap():
     length = len(REPO_AGENTS_MD.read_text(encoding="utf-8"))
     assert length <= AGENTS_MD_MAX_CHARS_DEFAULT, (
-        f"AGENTS.md is {length:,} chars; Code Puppy truncates it at "
+        f"AGENTS.md is {length:,} chars; Biggato truncates it at "
         f"{AGENTS_MD_MAX_CHARS_DEFAULT:,}. Move reference material into docs/."
     )

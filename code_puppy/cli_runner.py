@@ -168,9 +168,9 @@ def apply_quick_resume(args) -> bool:
 
 
 async def main():
-    """Main async entry point for Code Puppy CLI."""
+    """Main async entry point for Biggato CLI."""
     install_httpcore2_shutdown_filter()
-    parser = argparse.ArgumentParser(description="Code Puppy - A code generation agent")
+    parser = argparse.ArgumentParser(description="Biggato - A code generation agent")
     parser.add_argument(
         "--version",
         "-v",
@@ -300,12 +300,12 @@ async def main():
     from code_puppy.messaging import emit_error, emit_system_message
 
     # Show the logo on entering interactive mode (no -p flag; covers
-    # both `code-puppy` and `code-puppy -i`).
+    # both `biggato` and `biggato -i`).
     if not args.prompt:
         try:
             import pyfiglet
 
-            # Width-aware banner: full CODE PUPPY when it fits, PUP when
+            # Width-aware banner: full BIGGATO when it fits, GATO when
             # the terminal is too narrow (phones, tight splits).
             banner_columns = display_console.width
             intro_lines = pyfiglet.figlet_format(
