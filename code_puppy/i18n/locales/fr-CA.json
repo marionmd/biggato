@@ -139,6 +139,7 @@
   "cli.command.error": "Erreur de commande : {error}",
   "cli.context.cleared": "Contexte effacé. Nouvelle session : {session}",
   "cli.error.model_transient": "🔌 La connexion au modèle a rencontré une erreur temporaire ({error_type}) et n’a pas été rétablie après les tentatives automatiques. Il s’agit presque toujours d’une interruption du VPN, du WiFi ou du fournisseur; renvoyez simplement vos dernières instructions. L’historique de votre session est intact.",
+  "cli.error.no_model": "Aucun modèle n’est encore configuré, alors Biggato ne peut pas répondre. Lancez /add_model pour en ajouter un.",
   "cli.error.no_ports": "Aucun port disponible dans la plage {port_base}-{port_end}!",
   "cli.goodbye": "Au revoir!",
   "cli.goodbye_ctrld": "Au revoir! (Ctrl+D)",

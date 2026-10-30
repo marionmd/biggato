@@ -94,8 +94,17 @@ def _render_turn_exception(exc: Exception) -> None:
     see what actually happened upstream. The friendly UI is for the human,
     not for the audit trail.
     """
+    from code_puppy.agents._no_model import NoModelConfiguredError
     from code_puppy.agents.base_agent import should_retry_streaming_exception
     from code_puppy.error_logging import log_error
+
+    if isinstance(exc, NoModelConfiguredError):
+        # Not a bug: no model has been added yet. One line saying how to fix
+        # it, no traceback, nothing worth logging.
+        from code_puppy.messaging import emit_warning
+
+        emit_warning(str(exc))
+        return
 
     if should_retry_streaming_exception(exc):
         log_error(

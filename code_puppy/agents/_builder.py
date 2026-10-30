@@ -35,6 +35,7 @@ from code_puppy.agents._mcp import (  # noqa: F401 -- compatibility imports
     reload_mcp_servers,
 )
 from code_puppy.agents._model_message_transform import build_model_message_transform
+from code_puppy.agents._no_model import NoModelConfiguredError
 from code_puppy.agents._output_limits import (
     build_response_clamp,
     build_tool_output_limits,
@@ -227,6 +228,8 @@ def load_model_with_fallback(
             )
         return model, requested_model_name
     except ValueError as exc:
+        if not models_config:  # nothing to fall back to; startup already said so
+            raise NoModelConfiguredError() from exc
         available = list(models_config.keys())
         available_str = (
             ", ".join(sorted(available)) if available else "no configured models"
@@ -287,10 +290,11 @@ def load_model_with_fallback(
                 continue
 
         friendly = (
-            "No valid model could be loaded. Update the model configuration or "
-            "set a valid model with `config set`."
+            "No valid model could be loaded. Run `/model` to pick a working "
+            "model, or `/add_model` to add one."
         )
-        emit_error(friendly, message_group=message_group)
+        if not already_warned:  # once per combo, like the warning above
+            emit_error(friendly, message_group=message_group)
         raise ValueError(friendly) from exc
 
 

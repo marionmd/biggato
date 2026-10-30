@@ -139,6 +139,7 @@
   "cli.command.error": "Error de comando: {error}",
   "cli.context.cleared": "Contexto borrado. Nueva sesión: {session}",
   "cli.error.model_transient": "🔌 La conexión con el modelo sufrió un error temporal ({error_type}) y no se recuperó tras los reintentos automáticos. Casi siempre se debe a una interrupción de la VPN, del WiFi o del proveedor; vuelve a enviar tus últimas instrucciones. Tu historial de sesión está intacto.",
+  "cli.error.no_model": "Todavía no hay ningún modelo configurado, así que Biggato no puede responder. Ejecuta /add_model para añadir uno.",
   "cli.error.no_ports": "¡No hay puertos disponibles en el intervalo {port_base}-{port_end}!",
   "cli.goodbye": "¡Adiós!",
   "cli.goodbye_ctrld": "¡Adiós! (Ctrl+D)",
