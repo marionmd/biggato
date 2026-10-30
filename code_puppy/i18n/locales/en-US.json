@@ -243,7 +243,6 @@
   "cmd.truncate.success": "Truncated message history from {before} to {after} messages (keeping system message and {kept} most recent)",
   "cmd.truncate.usage": "Usage: /truncate <N> (where N is the number of messages to keep)",
   "cmd.tutorial.chatgpt_oauth": "🔐 Starting ChatGPT OAuth flow...",
-  "cmd.tutorial.claude_oauth": "🔐 Starting Claude Code OAuth flow...",
   "cmd.tutorial.complete": "🎉 Tutorial complete! Happy coding!",
   "cmd.tutorial.skipped": "⏭️ Tutorial skipped. Run /tutorial anytime!",
   "codex.imagegen.auth_required": "Codex OAuth authentication is required. Run /codex-auth first.",

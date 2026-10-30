@@ -191,7 +191,6 @@ def handle_tutorial_command(command: str) -> bool:
         reset_onboarding,
         run_onboarding_wizard,
     )
-    from code_puppy.model_switching import set_model_and_reload_agent
 
     # Always reset so user can re-run the tutorial anytime
     reset_onboarding()
@@ -208,13 +207,6 @@ def handle_tutorial_command(command: str) -> bool:
         from code_puppy.callbacks import on_custom_command
 
         on_custom_command("/chatgpt-auth", "chatgpt-auth")
-    elif result == "claude":
-        emit_info(t("cmd.tutorial.claude_oauth"))
-        from code_puppy.callbacks import on_claude_oauth_authenticate
-
-        auth_results = on_claude_oauth_authenticate()
-        if any(result is True for result in auth_results):
-            set_model_and_reload_agent("claude-code-claude-opus-4-7")
     elif result == "completed":
         emit_info(t("cmd.tutorial.complete"))
     elif result == "skipped":

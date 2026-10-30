@@ -14,7 +14,7 @@ from code_puppy.model_factory import ModelFactory, get_custom_config
 
 @pytest.fixture
 def claude_models_file(tmp_path, monkeypatch):
-    """Only the Claude OAuth models file exists, holding one raw entry."""
+    """Only a leftover Claude OAuth models file exists, holding one raw entry."""
     claude = tmp_path / "claude_models.json"
     claude.write_text(json.dumps({"raw-from-file": {"type": "anthropic"}}))
     missing = str(tmp_path / "missing.json")
@@ -26,18 +26,15 @@ def claude_models_file(tmp_path, monkeypatch):
         monkeypatch.setitem(callbacks._callbacks, phase, [])
 
 
-def test_claude_models_come_filtered_from_the_plugin(claude_models_file):
+def test_leftover_claude_oauth_models_are_not_listed(claude_models_file):
+    # Biggato doesn't offer Claude subscription sign-in, so neither the file
+    # nor a plugin hook may bring those models back.
     callbacks.register_callback(
         "load_claude_oauth_models", lambda: {"filtered-latest": {"type": "anthropic"}}
     )
     config = ModelFactory.load_config()
-    assert "filtered-latest" in config
+    assert "filtered-latest" not in config
     assert "raw-from-file" not in config
-
-
-def test_claude_models_fall_back_to_plain_json_without_the_plugin(claude_models_file):
-    config = ModelFactory.load_config()
-    assert "raw-from-file" in config
 
 
 def test_custom_endpoint_literal_api_key_is_used_verbatim():

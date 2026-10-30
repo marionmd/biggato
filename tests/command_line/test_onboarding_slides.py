@@ -92,7 +92,6 @@ class TestSlideModels:
 
         options = [
             ("chatgpt", "ChatGPT"),
-            ("claude", "Claude"),
             ("api_keys", "API"),
             ("openrouter", "OpenRouter"),
             ("skip", "Skip"),
@@ -102,13 +101,12 @@ class TestSlideModels:
         assert "ChatGPT" in result
         assert "▶" in result  # selected indicator
 
-    def test_claude_selected(self):
-        from code_puppy.command_line.onboarding_slides import slide_models
+    def test_no_claude_subscription_option(self):
+        # Anthropic doesn't allow Claude subscription sign-in in third-party apps.
+        from code_puppy.command_line.onboarding_slides import MODEL_OPTIONS
 
-        options = [("chatgpt", "ChatGPT"), ("claude", "Claude")]
-        content = slide_models(1, options)
-        result = _plain(content)
-        assert "Claude" in result
+        assert "claude" not in [option[0] for option in MODEL_OPTIONS]
+        assert not any("Claude" in option[1] for option in MODEL_OPTIONS)
 
     @pytest.mark.parametrize(
         "option,display,expected",
@@ -188,10 +186,3 @@ class TestSlideDone:
         result = _plain(content)
         assert "Chatgpt" in result or "chatgpt" in result.lower()
         assert "OAuth" in result
-
-    def test_with_oauth_claude(self):
-        from code_puppy.command_line.onboarding_slides import slide_done
-
-        content = slide_done("claude")
-        result = _plain(content)
-        assert "Claude" in result or "claude" in result.lower()

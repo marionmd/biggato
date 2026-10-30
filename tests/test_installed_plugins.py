@@ -192,3 +192,19 @@ def test_legacy_loader_skips_installed_duplicate(tmp_path):
     )
 
     assert plugins._load_builtin_plugins(tmp_path, {"duplicate"}) == []
+
+
+def test_claude_code_oauth_is_never_loaded(caplog):
+    # Anthropic doesn't allow third-party apps to offer Claude subscription
+    # sign-in, so the bundled plugin that does it is skipped.
+    loaded = []
+    points = [FakeEntryPoint("claude_code_oauth", lambda: loaded.append(True))]
+
+    with (
+        patch.object(plugins, "entry_points", return_value=points),
+        caplog.at_level("DEBUG", logger="code_puppy.plugins"),
+    ):
+        assert plugins._load_installed_plugins() == []
+
+    assert loaded == []
+    assert "Skipping retired plugin claude_code_oauth" in caplog.text

@@ -21,7 +21,6 @@ def run_tutorial():
             "require_setup": Mock(),
             "custom_command": Mock(),
             "oauth": Mock(return_value=list(oauth_results)),
-            "set_model": Mock(),
         }
         with (
             patch(f"{WIZARD}.run_onboarding_wizard", AsyncMock(return_value=choice)),
@@ -29,10 +28,6 @@ def run_tutorial():
             patch(f"{WIZARD}.require_model_setup_if_needed", mocks["require_setup"]),
             patch("code_puppy.callbacks.on_custom_command", mocks["custom_command"]),
             patch("code_puppy.callbacks.on_claude_oauth_authenticate", mocks["oauth"]),
-            patch(
-                "code_puppy.model_switching.set_model_and_reload_agent",
-                mocks["set_model"],
-            ),
             patch("code_puppy.command_line.core_commands.emit_info"),
         ):
             assert handle_tutorial_command("/tutorial") is True
@@ -49,15 +44,11 @@ def test_chatgpt_choice_dispatches_the_plugin_command(run_tutorial):
     mocks["oauth"].assert_not_called()
 
 
-@pytest.mark.parametrize(
-    "results, switches", [([True], True), ([None], False), ([], False)]
-)
-def test_claude_choice_switches_model_only_after_plugin_auth(
-    run_tutorial, results, switches
-):
-    mocks = run_tutorial("claude", results)
-    mocks["oauth"].assert_called_once_with()
-    assert mocks["set_model"].called is switches
+def test_claude_choice_never_starts_claude_sign_in(run_tutorial):
+    # Anthropic doesn't allow Claude subscription sign-in in third-party apps.
+    mocks = run_tutorial("claude", [True])
+    mocks["oauth"].assert_not_called()
+    mocks["custom_command"].assert_not_called()
 
 
 @pytest.mark.parametrize("choice", ["completed", "skipped"])

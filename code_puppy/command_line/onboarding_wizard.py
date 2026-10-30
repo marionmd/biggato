@@ -129,8 +129,6 @@ class OnboardingWizard:
                 self.model_choice = choice_id
                 if choice_id == "chatgpt":
                     self.trigger_oauth = "chatgpt"
-                elif choice_id == "claude":
-                    self.trigger_oauth = "claude"
 
     def next_slide(self) -> bool:
         """Move to next slide."""
@@ -333,7 +331,6 @@ async def run_onboarding_wizard() -> Optional[str]:
 
     Returns:
         - "chatgpt" if user wants ChatGPT OAuth
-        - "claude" if user wants Claude OAuth
         - "completed" if finished normally
         - "skipped" if user pressed ESC
         - None on error
@@ -383,14 +380,14 @@ async def run_onboarding_if_needed() -> Optional[str]:
 def require_model_setup_if_needed(wizard_result: Optional[str]) -> None:
     """Require an explicit model choice when the user skipped OAuth.
 
-    Claude Code and ChatGPT OAuth flows set a model for you. For every other
+    The ChatGPT OAuth flow sets a model for you. For every other
     path (API keys, OpenRouter, "skip for now", or a plain completed/skipped
     tutorial) there is no bundled default model anymore, so the user *must*
     run ``/add_model`` before they can do anything useful. Surface a loud,
     unmissable instruction instead of letting them hit a silent [None] model.
     """
-    # OAuth paths already wired up a model - nothing to nag about.
-    if wizard_result in ("chatgpt", "claude"):
+    # The OAuth path already wired up a model - nothing to nag about.
+    if wizard_result == "chatgpt":
         return
 
     from code_puppy import config as cp_config
@@ -409,5 +406,5 @@ def require_model_setup_if_needed(wizard_result: Optional[str]) -> None:
         "\U0001f6a8 No model configured yet!\n"
         "   Biggato ships with an empty model list, so you need to add one:\n"
         "   \u2022 Run /add_model to browse + add a model (API key required), or\n"
-        "   \u2022 Run /tutorial again and pick Claude Code or ChatGPT OAuth."
+        "   \u2022 Run /tutorial again and pick ChatGPT OAuth."
     )

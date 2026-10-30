@@ -1102,7 +1102,7 @@ def _warn_no_model_available() -> None:
             "\u26a0\ufe0f  No model is configured! Biggato can't talk to an LLM "
             "until you add one.\n"
             "   \u2022 Run /add_model to pick a model + API key, or\n"
-            "   \u2022 Run /tutorial and choose Claude Code or ChatGPT OAuth."
+            "   \u2022 Run /tutorial and choose ChatGPT OAuth."
         )
     except Exception:
         # Messaging may not be wired up yet (very early startup) - never crash.

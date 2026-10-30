@@ -12,7 +12,6 @@ SlideContent = list[tuple[str, str]]
 
 MODEL_OPTIONS: List[Tuple[str, str, str]] = [
     ("chatgpt", "ChatGPT Plus/Pro/Max", "OAuth login - no API key needed"),
-    ("claude", "Claude Code Pro/Max", "OAuth login - no API key needed"),
     ("api_keys", "API Keys", "OpenAI, Anthropic, Google, etc."),
     ("openrouter", "OpenRouter", "Single key for 100+ models"),
     ("skip", "Skip for now", "Configure later with /set or /add_model"),
@@ -90,13 +89,6 @@ def slide_models(selected_option: int, options: List[Tuple[str, str]]) -> SlideC
             content,
             "class:tui.body",
             "  Uses your existing subscription\n  GPT-5.2, GPT-5.2-codex\n",
-        )
-    elif opt == "claude":
-        _add(content, "class:tui.warning", " Claude OAuth\n")
-        _add(
-            content,
-            "class:tui.body",
-            "  Uses your existing subscription\n  Opus/Sonnet/Haiku 4.5\n",
         )
     elif opt == "api_keys":
         _add(content, "class:tui.warning", " API Keys\n")

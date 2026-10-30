@@ -780,42 +780,26 @@ class ModelFactory:
         # Import OAuth model file paths from main config
         from code_puppy.config import (
             CHATGPT_MODELS_FILE,
-            CLAUDE_MODELS_FILE,
             COPILOT_MODELS_FILE,
             GEMINI_MODELS_FILE,
         )
 
-        # Build list of extra model sources
-        extra_sources: list[tuple[pathlib.Path, str, bool]] = [
-            (pathlib.Path(EXTRA_MODELS_FILE), "extra models", False),
-            (pathlib.Path(CHATGPT_MODELS_FILE), "ChatGPT OAuth models", False),
-            (pathlib.Path(CLAUDE_MODELS_FILE), "Claude Code OAuth models", True),
-            (pathlib.Path(GEMINI_MODELS_FILE), "Gemini OAuth models", False),
-            (pathlib.Path(COPILOT_MODELS_FILE), "Copilot models", False),
+        # Build list of extra model sources. Claude Code OAuth models
+        # (CLAUDE_MODELS_FILE) are deliberately absent: Biggato doesn't offer
+        # Claude subscription sign-in, so leftover entries must not be listed.
+        extra_sources: list[tuple[pathlib.Path, str]] = [
+            (pathlib.Path(EXTRA_MODELS_FILE), "extra models"),
+            (pathlib.Path(CHATGPT_MODELS_FILE), "ChatGPT OAuth models"),
+            (pathlib.Path(GEMINI_MODELS_FILE), "Gemini OAuth models"),
+            (pathlib.Path(COPILOT_MODELS_FILE), "Copilot models"),
         ]
 
-        for source_path, label, use_filtered in extra_sources:
+        for source_path, label in extra_sources:
             if not source_path.exists():
                 continue
             try:
-                # Filtered loading for Claude Code OAuth models (latest versions
-                # only) via the load_claude_oauth_models hook; else standard JSON.
-                if use_filtered:
-                    load_results = callbacks.on_load_claude_oauth_models()
-                    extra_config = next(
-                        (result for result in load_results if isinstance(result, dict)),
-                        None,
-                    )
-                    if extra_config is None:
-                        # Plugin unavailable or failed; fall back to plain JSON.
-                        logging.getLogger(__name__).debug(
-                            f"claude_code_oauth plugin not available, loading {label} as plain JSON"
-                        )
-                        with open(source_path, "r") as f:
-                            extra_config = json.load(f)
-                else:
-                    with open(source_path, "r") as f:
-                        extra_config = json.load(f)
+                with open(source_path, "r") as f:
+                    extra_config = json.load(f)
                 config.update(extra_config)
             except json.JSONDecodeError as exc:
                 logging.getLogger(__name__).warning(
@@ -1057,8 +1041,9 @@ class ModelFactory:
                 model_name=model_config["name"],
                 provider=provider,
             )
-        # NOTE: 'claude_code' model type is now handled by the claude_code_oauth plugin
-        # via the register_model_type callback. See plugins/claude_code_oauth/register_callbacks.py
+        # NOTE: the 'claude_code' model type belonged to the claude_code_oauth
+        # plugin, which Biggato no longer loads (see _RETIRED_PLUGINS in
+        # code_puppy/plugins/__init__.py), so it is unsupported.
 
         elif model_type == "azure_openai":
             azure_endpoint_config = model_config.get("azure_endpoint")

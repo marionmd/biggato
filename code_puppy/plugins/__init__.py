@@ -133,6 +133,22 @@ def _install_project_plugin_finder() -> None:
 
 PLUGIN_ENTRY_POINT_GROUP = "code_puppy.plugins"
 
+# Installed plugins Biggato never loads, even though the core-plugins bundle
+# still advertises them.
+_RETIRED_PLUGINS = frozenset(
+    {
+        # Context accounting now anchors to the API's own reported
+        # prompt-token usage (see code_puppy.context_accounting) instead of a
+        # learned chars-per-token ratio; a dead learner would monkeypatch the
+        # shared fallback estimator.
+        "token_ratio_learner",
+        # Signs in with a Claude Free/Pro/Max subscription. Anthropic doesn't
+        # allow third-party apps to offer Claude.ai login or use those
+        # credentials; Claude models go through an Anthropic API key instead.
+        "claude_code_oauth",
+    }
+)
+
 # Track if plugins have already been loaded to prevent duplicate registration
 _PLUGINS_LOADED = False
 
@@ -191,13 +207,7 @@ def _load_installed_plugins() -> list[str]:
     )
     for entry_point in discovered:
         plugin_name = entry_point.name
-        if plugin_name == "token_ratio_learner":
-            # Retired: context accounting now anchors to the API's own
-            # reported prompt-token usage (see code_puppy.context_accounting)
-            # instead of a learned chars-per-token ratio. Older installed
-            # core-plugins bundles may still advertise this entry point for
-            # a while; skip it unconditionally rather than let a dead
-            # learner monkeypatch the shared fallback estimator.
+        if plugin_name in _RETIRED_PLUGINS:
             logger.debug("Skipping retired plugin %s", plugin_name)
             continue
         try:

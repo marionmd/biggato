@@ -146,14 +146,14 @@ class TestOnboardingWizard:
         assert w.trigger_oauth == "chatgpt"
         assert w.model_choice == "chatgpt"
 
-    def test_handle_option_select_claude(self):
+    def test_no_option_triggers_claude_sign_in(self):
         w = self._make_wizard()
         w.current_slide = 1
-        opts = w.get_options_for_slide()
-        claude_idx = next(i for i, (id_, _) in enumerate(opts) if id_ == "claude")
-        w.selected_option = claude_idx
-        w.handle_option_select()
-        assert w.trigger_oauth == "claude"
+        for idx in range(len(w.get_options_for_slide())):
+            w.selected_option = idx
+            w.trigger_oauth = None
+            w.handle_option_select()
+            assert w.trigger_oauth != "claude"
 
     def test_handle_option_select_api_keys(self):
         w = self._make_wizard()
